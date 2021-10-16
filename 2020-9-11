@@ -1,0 +1,99 @@
+#include<stdio.h>
+
+//struct BOOK
+//{
+//	char question1[30];
+//	char answer[20];
+//	char question2[30];
+//	short time;
+//};
+
+
+
+
+int main()
+{
+	int day = 0;
+	scanf("%d	a",&day);
+	switch(day)
+	{
+	    case 1:
+		printf("毓毓老婆\n");
+		break;
+		case 2:
+		printf("星期2\n");
+		break;
+		case 3:
+		printf("星期3\n");
+		break;
+		case 4:
+		printf("星期4\n");
+		break;
+		case 5:
+		printf("星期5\n");
+		break;
+		case 6:
+		printf("星期6\n");
+		break;
+		case 7:
+		printf("星期7\n");
+		break;
+		default:
+			printf("输入错误\n");
+	
+	}
+
+	system("pause");
+	return 0;
+	//输出1-100之间的奇数
+	///*int i=1;
+	//while(i<=100)
+	//{
+	//    if(i%2 == 1)
+	//		printf("%d\n",i);
+	//	i++;
+	//}
+
+	
+	////分支语句、循环结构
+	//int age = 101;
+	//if(age<18)
+	//	printf("未成年\n",age);
+	//else if(age>=18 && age<=50)
+	//	printf("青年\n",age);
+	//else if(age>=50 && age<=100)
+	//	printf("老年\n",age);
+	//else
+	//	printf("老不死\n",age);
+
+
+	//int a=0;
+	//int b=~a;
+	//int a=(int)3.14;
+	//printf("%d\n",a);
+	//
+	//int a = 3;
+	//int b = 5;
+	//int c= a&&b;
+	//printf("%d\n",c);
+	//extern int g_val;
+	//printf("g_val=%d\n",g_val);
+	///*char ch='w';
+	//char* pc = &ch;
+	//printf("%d\n",sizeof(pc));//sizeof()计算括号里面内容大小
+	
+	//struct结构体
+	//struct BOOK b1 = {"金画是谁？","毓毓的老婆","那毓毓会爱画画多久？",10000};
+	//printf("问：%s\n",b1.question1);
+	//printf("答：%s。\n",b1.answer);
+	//printf("问：%s\n",b1.question2);//b1后面要加点
+	//printf("答：%d年。\n",b1.time);
+
+
+    
+
+	//printf("hh\n");
+	//printf("hello world\n");
+	//system("pause");
+    //return 0;
+}
