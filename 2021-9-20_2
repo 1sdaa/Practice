@@ -1,0 +1,228 @@
+#include<stdio.h>
+#include<stdlib.h>
+void bubble_sort(int arr[],int sz)
+{
+//确定冒泡排序的次数
+int i=0;
+for(i=0;i<sz-1;i++)//冒泡排序的次数
+	{
+		int j=0;
+		int flag=1;
+		for(j=0;j<sz-1-i;j++)//每一次冒泡排序中，相邻两位比较的次数
+		{
+			if(arr[j]>arr[j+1])//如果左边大于右边，那就交换位置
+			{
+				int tmp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=tmp;
+				flag=0;
+			}
+		}
+		if(flag==1)
+		{
+			break;
+		}
+	}
+
+int main()
+{
+	int i=0;
+	int arr[]={9,8,7,5,6,2,3,1,4,0};//十个数得排9次
+	int sz=sizeof(arr)/sizeof(arr[0]);//sz=10
+	bubble_sort(arr,sz);//传过去数组，上边要用一个数组去接收
+	for(i=0;i<sz;i++)//十个元素，打印十次，为了不写十次printf()，所以使用for循环
+	{
+		printf("%d ",arr[i]);
+	}
+	system("pause");
+	return 0;
+}
+
+
+
+////void bubble_sort(int arr[] , int sz)
+////{
+////	//确定冒泡排序的趟数
+////	int i=0;//如果是十个元素就排九趟
+////	for(i=0;i<sz-1;i++)
+////	{
+////		//每一趟冒泡排序
+////		int j=0;
+////		for(j=0;j<sz-1-i;j++)
+////		{
+////			if(arr[j]>arr[j+1])
+////			{
+////				int tmp = arr[j];
+////				arr[j]=arr[j+1];
+////				arr[j+1]=tmp;
+////			}
+////		}
+////	}
+////}
+////int main()
+////{
+////	int arr[]={9,8,7,6,5,4,3,2,1,0};
+////	int i=0;
+////	int sz=sizeof(arr)/sizeof(arr[0]);
+////	//对arr进行排序，排成升序
+////	//arr是数组，对arr进行传参的时候传过去的实际上是数组arr首个元素的地址：&arr[0]
+////	bubble_sort(arr,sz);//冒泡排序函数
+////	for(i=0;i<sz;i++)
+////	{
+////		printf("%d ",arr[i]);
+////	}
+////	system("pause");
+////	return 0;
+////}
+
+
+////斐波那契数列
+////1 1 2 3 5 8 13........
+////就是第三个数等于前两个数之和
+////int Fib(int n)//递归的方式
+////{
+////	if(n<=2)
+////		return 1;
+////	else
+////		return Fib(n-1)+Fib(n-2);
+////}
+////用循环的方式
+//int Fib(int n)
+//{
+//	int a=1;
+//	int b=1;
+//	int c=1;
+//	while(n>2)
+//	{
+//		c=a+b;
+//		a=b;
+//		b=c;
+//		n--;
+//		
+//	}
+//	return c;
+//}
+////描述第n个斐波那契数
+////写程序时先把要自己定义的函数怎么用写出来，完了再写这个函数的定义和功能
+//int main()
+//{
+//	int ret=0;
+//	int n=0;
+//	scanf("%d",&n);
+//	ret=Fib(n);
+//	printf("%d\n",ret);
+//	system("pause");
+//	return 0;
+//}
+
+//用自定义的函数计算n的阶乘
+//int Fac1(int n)//循环的方式
+//{
+//	int i=0;
+//	int ret=1;
+//	for(i=1;i<=n;i++)
+//	{
+//		ret=ret*i;
+//	}
+//	return ret;
+//}
+//int Fac2(int n)//采用递归的方式
+//{
+//	if(n<=1)
+//		return 1;
+//	else
+//		return n*Fac2(n-1);//采用递归的方式，套娃
+//}
+//int main()
+//{
+//	//求n的阶乘
+//	int n = 0;
+//	int ret = 0;
+//	scanf("%d",&n);
+//	ret = Fac2(n);//采用循环的方式
+//	printf("%d\n",ret);
+//	system("pause");
+//	return 0;
+//}
+
+
+////#include<string.h>//包含strlen()的头文件
+////用自己定义的函数来计算字符串的长度
+////int my_strlen(char* str)
+////{
+////	int count=0;//定义了一个变量来计算字符串的长度
+////	while(*str != '\0')
+////	{
+////		count++;
+////		str++;
+////	}
+////	return count;
+////}
+////递归的方法,一点一点剥离
+////把大事化小
+////my_strlen("bit")
+////1+my_strlen("it")
+////1+1+my_strlen("t")
+////1+1+1+my_strlen("")
+////1+1+1+0=3
+//int my_strlen(char* str)
+//{
+//	while(*str != '\0')
+//	{
+//		return 1+my_strlen(str+1);
+//	}
+//	return 0;//这个return 0 返回到了上一层的my_strlen(str+1)中，然后一层一层往上返回
+//	
+//}
+//int main()
+//{
+//	char arr[]="bit";//此时数组内容为“bit\0”
+//	//可以使用c语言中的strlen（）函数来计算字符串的长度，此函数计算到\0时便会停止
+//	//int len = strlen(arr);//求字符串长度
+//	//printf("%d\n",len);
+//	//定义一个函数my_strlen()来计算字符串的长度
+//	//模拟实现了strlen()函数的功能
+//	int len = my_strlen(arr);//arr是数组，数组传参时传的是数组首个元素的地址，不是整个数组
+//	                         //数组传址时要用指针来接收
+//	printf("len=%d\n",len);
+//	system("pause");
+//	return 0;
+//}
+
+////递归的调用，自己调用自己来进行计算
+//void print(int n)
+//{
+//	if(n>9)//递归在使用时要找到一个满足的条件，要满足条件才进去，否则不进去，不然会栈溢出
+//	{
+//		print(n/10);//会反复调用直至算出来输入的数小于9然后再将数值返回到上一层的这个地方
+//	}
+//	printf("%d ",n%10);
+//	
+//}
+//int main()
+//{
+//	unsigned int num=0;//1234
+//	scanf("%d",&num);
+//	//递归的调用
+//	print(num);
+//	//把原问题拆成与原问题相似，但规模较小的问题来求解
+//	//print(1234)
+//	//print(123) 4
+//	//print(12) 3 4
+//	//print(1) 2 3 4
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//#include"add.h"//引用包含自己写的函数的声明的头文件时需要用双引号来引用
+//
+//int main()
+//{
+//	int a=10;
+//	int b=20;
+//	int sum=Add(a,b);
+//	printf("%d\n",sum);
+//	system("pause");
+//	return 0;
+//}
