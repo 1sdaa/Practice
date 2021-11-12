@@ -1,0 +1,98 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+//求字符串长度使用自定义函数my_strlen()函数
+int my_strlen(const char* arr)//保证传递过来的指针不会被改变
+{
+	int count=0;
+	assert(arr != NULL);
+	while(*arr !='\0')
+	{
+		count++;
+		arr++;
+	}
+	return count;
+}
+int main()
+{
+	char arr[]="abcdefg";
+	printf("%d\n",my_strlen(arr));
+	system("pause");
+	return 0;
+}
+
+
+
+//字符串拷贝
+//void my_strcpy(char* dest,char* sour)//此处使用指针接收是因为下面函数传参传过来的是函数的首地址，所以要用指针接收
+//{
+//	while(*sour!='\0')//此处使用循环，直到arr2的元素等与于\0时停止拷贝
+//	{
+//		*dest=*sour;
+//		sour++;
+//		dest++;
+//	}
+//	*dest=*sour;//此处再把\0拷贝到arr1中去
+//}
+//上面while循环可以优化为以下
+//void my_strcpy(char* dest,char* sour)//此处使用指针接收是因为下面函数传参传过来的是函数的首地址，所以要用指针接收
+//{
+//	while(*dest++ = *sour++)//此处arr2中的元素挨个拷贝到arr2中，只到把\0拷贝过去以后跳出while循环，因为\0的ASCLL值为0，所以此时括号内部为假，停止循环
+//	{
+//		;
+//	}
+//}
+
+
+//////以上代码还可以优化为以下
+////char* my_strcpy(char* dest,const char* sour)//因为当主程序里面的arr1和arr2的位置写反以后，如果不加const进行修饰的话，
+////	                                       //程序还会正常运行，不会报错，若加上const，程序运行时则会报错
+////										   //加char*是因为，strcpy（）库函数的返回值为目的地的地址，所以要用char*，比用void要好，
+////										   //而且主程序也可以进行优化为链式访问
+////{
+////	char* ret = dest;
+////	assert(dest!=NULL);//要引用头文件assert.h
+////	assert(sour!=NULL);//断言，如果下面传参传上来的参数为空会报错，并且显示多少行
+////	//把sour指向的空间的内容传递到dset指向的地址中去，包含'\0'字符
+////	while(*dest++ = *sour++)
+////	{
+////		;
+////	}
+////	return ret;
+////}
+////int main()
+////{
+////	char arr1[]="##############";//存放的是##############\0
+////	char arr2[]="bit";//存放的是bit\0
+////	//自定义一个函数my_strcpy把arr1中的内容拷贝到arr2中去
+////	//my_strcpy(arr1,arr2);//strcpy(destination，source)函数中有两个参数，第一个是拷贝放入的目的地，第二个是来源
+////	printf("%s\n",my_strcpy(arr1,arr2));//打印的时候只会打印出bit，是因为printf（）这个函数在打印时，遇到\0便会停止，所以只会打印出bit，其后面的#########打印不出来，但还存在 
+////	system("pause");
+////	return 0;
+////}
+
+
+//////求n的阶乘的每一阶相加的和
+////int main()
+////{
+////	int i=0;
+////	int sum=0;//保存最终结果
+////	int n=0;
+////	int ret =1;//来存放求出的阶乘
+////	scanf("%d",&n);
+////	for(i=1;i<=n;i++)
+////	{
+////		int j=0;
+////		ret=1;//调试加上去的
+////		for(j=1;j<=i;j++)
+////		{
+////			
+////			ret*=j;
+////		}
+////		sum+=ret;
+////	}
+////	printf("%d\n",sum);
+////	system("pause");
+////	return 0;
+////}
