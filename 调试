@@ -1,0 +1,441 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include <windows.h>
+#include<string.h>
+//递归实现n的k次方
+double Pow(int n,int k)
+{
+	//采用递归结构实现
+	//n的k次方=n*n^(k-1)
+	if(k<0)
+	{
+		return (1.0/Pow(n,-k));//因为是double类型，所以要写成1.0
+	}
+	else if(k==0)
+	{
+		return 1;
+	}
+	else
+	{
+		return n*Pow(n,k-1);
+	}
+}
+int main()
+{
+	int n=0;
+	int k=0;
+	double ret=0;
+	scanf("%d%d",&n,&k);
+	ret=Pow(n,k);
+	printf("%lf\n",ret);//double类型，打印的时候用%lf
+	system("pause");
+	return 0;
+}
+
+
+//////输入一个非负整数，返回它的组成数字之和
+//////1729
+//////Dignum(172)+9
+//////Dignum(17)+2+9
+//////Dignum(1)+7+2+9
+//////1+7+2+9
+////int Dignum(unsigned int num)
+////{
+////	if(num>9)
+////	{
+////		return Dignum(num/10) + (num%10);//每个数字模10，除10，再相加，然后加上递归条件就可以了
+////	}
+////	else
+////	{
+////		return num;
+////	}
+////}
+////int main()
+////{
+////	int num=0;
+////	int ret=0;
+////	scanf("%d",&num);
+////	ret=Dignum(num);
+////	printf("数字之和为：%d\n",ret);
+////	system("pause");
+////	return 0;
+////}
+
+
+
+
+
+//////打印一个数的每一位，用递归的方式实现
+////int my_strlen(char* arr)
+////{
+////	int count=0;
+////	while(*arr!='\0')//解引用是用来判断指针指向的字符是不是\0，若是arr则是地址，而不是数组中的元素了
+////	{
+////		count++;
+////		arr++;
+////	}
+////	return count;
+////}
+//////void Reverse(char* arr)//此处可以用char*   也可以用char arr[]，哪种形式都可以
+//////{
+//////	int left=0;
+//////	int right=my_strlen(arr)-1;
+//////	while(left<right)
+//////	{
+//////		int tmp=arr[left];
+//////		arr[left]=arr[right];
+//////		arr[right]=tmp;
+//////		left++;
+//////		right--;
+//////	}
+//////}
+//////用递归结构来实现以上功能
+////void Reverse_string(char* arr)//递归的思想就是大事化小
+////{
+////	char tmp=arr[0];
+////	int len=my_strlen(arr);
+////	arr[0]=arr[len-1];
+////	arr[len-1]='\0';
+////	if(my_strlen(arr+1)>=2)//递归必须要有条件
+////		Reverse_string(arr+1);
+////	arr[len-1]=tmp;
+////}
+////int main()
+////{
+////	char arr[]="abcdef";
+////	Reverse_string(arr);
+////	printf("%s\n",arr);//打印字符串要用%s
+////	system("pause");
+////	return 0;
+////}
+
+
+
+
+
+//////打印乘法表
+////void Print(int m)
+////{
+////	int i=0;
+////	for(i=1;i<=m;i++)
+////	{
+////		int j=0;
+////		for(j=1;j<=i;j++)
+////		{
+////			printf("%d*%d=%-3d",i,j,i*j);
+////		}
+////		printf("\n");
+////	}
+////	
+////}
+////int main()
+////{
+////	int m =0;
+////	scanf("%d",&m);
+////	Print(m);
+////	system("pause");
+////	return 0;
+////}
+
+//////使用指针打印数组内容
+////void Print(int* p,int sz)//因为下面函数传参过来的是数组首元素的地址，所以这边接收要使用指针
+////{
+////	int i=0;
+////	for(i=0;i<sz;i++)
+////	{
+////		printf("%d ",*(p+i));
+////	}
+////	printf("\n");
+////}
+////int main()
+////{
+////	int arr[]={1,2,3,4,5,6,7,8,9,10};
+////	int sz=sizeof(arr)/sizeof(arr[0]);
+////	//使用函数打印数组
+////	Print(arr,sz);
+////	system("pause");
+////	return 0;
+////}
+
+//////打印二进制数的奇数位和偶数位
+//////获取一个数的奇数位和偶数位分别打印出二进制序列
+////void Print(int m)
+////{
+////	int i=0;
+////	printf("奇数位：\n");
+////	for(i=30;i>=0;i=i-2)
+////	{
+////		printf("%d ",1&(m>>i));//二进制序列右移i位然后与1按位与得到的是该位上的数字，随后将其打印出来
+////	}
+////	printf("\n");
+////	printf("偶数位：\n");
+////	for(i=31;i>=1;i=i-2)
+////	{
+////		printf("%d ",1&(m>>i));
+////	}
+////	printf("\n");
+////}
+////
+////int main()
+////{
+////	int m=0;
+////	scanf("%d",&m);
+////	Print(m);//打印函数
+////	system("pause");
+////	return 0;
+////}
+
+
+
+//////求二进制中不同位的个数
+//////求出两个二进制数（32位）的bit位有多少位不同
+//////不调用函数的写法
+//////int get_different_bit(int m,int n)
+//////{
+//////	//想求出两个二进制数有几位不同可以使用异或来计算，两个不同的数字异或得1，相同得0，
+//////	//然后再利用下面那个题目来计算得出的二进制中有几个1，就知道两个二进制中有多少bit位不同了
+//////	int tmp=0;
+//////	int count=0;
+//////	tmp=m^n;
+//////	//while循环可以不用，可以直接调用下面那个题目编写好的函数
+//////	while(tmp)
+//////	{
+//////		tmp=tmp&(tmp-1);
+//////		count++;
+//////	}
+//////	return count;
+//////}
+////	//调用函数的写法
+////int get_bit_1(int n)
+////{
+////	
+////	int count=0;
+////	while(n)
+////	{
+////		n=n&(n-1);
+////	    count++;
+////	}
+////	return count;
+////}
+////int get_different_bit(int m,int n)
+////{
+////	int count =0;
+////	int tmp=0;
+////	tmp=m^n;
+////	count=get_bit_1(tmp);
+////	return count;
+////}
+////int main()
+////{
+////	int m=0;
+////	int n=0;
+////	int count=0;
+////	scanf("%d%d",&m,&n);
+////	count=get_different_bit(m,n);
+////	printf("count=%d\n",count);
+////	system("pause");
+////	return 0;
+////}
+
+
+//////统计二进制表示中1的个数
+//////一个数在内存中保存的是补码
+//////int count_bit_1(unsigned int n) //此处必须使用unsigned int 将参数转换成无符号数，否则对于负数来说就无法计算
+//////{
+//////	int count = 0;
+//////	while(n)
+//////	{
+//////		if(n%2==1)//计算一个数的二进制中1的个数，可以将这个数先模2再除2，直到为0，同理如果求十进制中1的个数就先模10再除10直到为0
+//////		{
+//////			count++;
+//////		}
+//////	    n = n/2;
+//////	}
+//////	return count;
+//////}
+////////还可以用下面的方法计算，分别进行移位然后按位与1
+//////int count_bit_1(int n)
+//////{
+//////	int count=0;
+//////	int i=0;
+//////	for(i=0;i<32;i++)
+//////	{
+//////		if(((n>>i)&1)==1)
+//////		{
+//////			count++;
+//////		}
+//////	}
+//////	return count;
+//////}
+//////也可以用下面的方法进行计算
+////int count_bit_1(int n)
+////{
+////	int count=0;
+////	while(n)
+////	{
+////		//假设n=1101，则n-1=1100，令n=n&(n-1)则
+////		//1101
+////		//1100  就等于
+////		//1100 n
+////		//1011 n-1新的n-1
+////		//1000  n 新的n
+////		//0111  n-1  新的n-1
+////		//0000  新的n，此时等于0
+////		//那么有一次按位与就说明有一位1被计算上，所以要来一次count++
+////		n=n&(n-1);
+////		count++;
+////	}
+////	return count;
+////}
+////int main()
+////{
+////	int a = 0;
+////	int count=0;
+////	printf("请输入要计算的数字：\n");
+////	scanf("%d", &a );//此处如果在%d后加换行符，则必须得输入两次才能打印出结果
+////	//写一个函数求a的二进制中（补码）1的个数
+////	count = count_bit_1(a);
+////	printf("count = %d\n",count);
+////	system("pause");
+////	return 0;
+////}
+
+
+
+
+//////交换数组（大小相等的两个数组）
+//////将数组A中的内容和数组B中的内容进行交换
+////int main()
+////{
+////	int arr1[]={1,2,3,4,5};
+////	int arr2[]={6,7,8,9,10};
+////	int tmp=0;
+////	int j=0;
+////	int sz=sizeof(arr1)/sizeof(arr1[0]);//计算出数组的大小
+////	int i=0;
+////	for(i=0;i<sz;i++)
+////	{
+////		tmp=arr1[i];
+////		arr1[i]=arr2[i];
+////		arr2[i]=tmp;
+////		printf("%d ",arr1[i]);
+////	}
+////	printf("\n");
+////	for(j=0;j<sz;j++)
+////	{
+////		 printf("%d ",arr2[j]);
+////	}
+////	
+////	system("pause");
+////	return 0;
+////}
+
+//////使用函数初始化数组
+//////使用函数打印数组的每一个元素
+//////实现reverse（）函数，完成数组中函数的逆置
+////void Init(int arr[],int sz)//初始化函数内部
+////{
+////	int i=0;
+////	for(i=0;i<sz;i++)
+////	{
+////		arr[i]=0;
+////	}
+////}
+////void Print(int arr[],int sz)//打印函数
+////{
+////	int i=0;
+////	for(i=0;i<sz;i++)
+////	{
+////		printf("%d ",arr[i]);
+////	}
+////	printf("\n");
+////}
+////void Reverse(int arr[],int sz)//逆置函数
+////{
+////	int left=0;
+////	int right=sz-1;
+////	int tmp=0;
+////	while(left<right)
+////	{
+////		tmp=arr[left];
+////		arr[left]=arr[right];
+////		arr[right]=tmp;
+////		left++;
+////		right--;
+////	}
+////}
+////int main()
+////{
+////	int arr[10]={1,2,3,4,5,6,7,8,9,10};//创建一个含有十个元素的数组
+////	int sz = sizeof(arr)/sizeof(arr[0]);
+////	//Init(arr,sz);//初始化数组
+////	Print(arr,sz);//打印数组，需要放入参数为，数组和数组元素的个数
+////	Reverse(arr,sz);//把数组的元素逆置
+////	Print(arr,sz);//逆置完成后打印出来
+////	system("pause");
+////	return 0;
+////}
+
+
+////计算字符数组arr中的元素个数
+//int my_strlen(char* str)
+//{
+//	char* start=str;
+//	char* end=str;
+//	while(*end!='\0')
+//	{
+//		end++;
+//	}
+//	return end-start;
+//}
+//int main()
+//{
+//	char arr[]="hello";
+//	int len=my_strlen(arr);//放进来的是数组首元素的地址
+//	printf("%d\n",len);
+//	system("pause");
+//	return 0;
+//
+//}
+
+////指针的加减整数	运算
+//int main()
+//{
+//	int i=0;
+//	int arr[10]={1,2,3,4,5,6,7,8,9,10};
+//	int* p=arr;
+//	int sz=sizeof(arr)/sizeof(arr[0]);
+//	for(i=0;i<sz;i++)
+//	{
+//		printf("%d ",*p);//打印出*p所指向的地址包含的内容
+//		p=p+1;//指针+1,写成p++也可以
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+////int main()
+////{
+////	int a = 0x11223344;
+////	int* pa=&a;
+////	char* pc=&a;
+////	printf("%p\n",pa);
+////	printf("%p\n",pa+1);
+////	printf("%p\n",pc);
+////	printf("%p\n",pc+1);
+////	system("pause");
+////	return 0;
+////}
+
+
+//////计算指针类型char* int* double* float* 所占空间的大小
+////int main()
+////{
+////	printf("%d\n",sizeof(char*));
+////	printf("%d\n",sizeof(int*));
+////	printf("%d\n",sizeof(double*));
+////	printf("%d\n",sizeof(float*));//结果都是4，因为在32位平台上，指针大小默认为4个字节
+////	system("pause");
+////	return 0;
+////}
