@@ -18,7 +18,7 @@ int main()
 	switch(day)
 	{
 	    case 1:
-		printf("毓毓老婆\n");
+		printf("嘿嘿\n");
 		break;
 		case 2:
 		printf("星期2\n");
@@ -83,7 +83,7 @@ int main()
 	//printf("%d\n",sizeof(pc));//sizeof()计算括号里面内容大小
 	
 	//struct结构体
-	//struct BOOK b1 = {"金画是谁？","毓毓的老婆","那毓毓会爱画画多久？",10000};
+	//struct BOOK b1 = {"是谁？","婆","那久？",10000};
 	//printf("问：%s\n",b1.question1);
 	//printf("答：%s。\n",b1.answer);
 	//printf("问：%s\n",b1.question2);//b1后面要加点
