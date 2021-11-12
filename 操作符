@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<Windows.h>
+#include <string.h>
+//条件操作符（三目操作符）案例
+////int main()
+////{
+////	int a = 0;
+////	int b=0;
+////	int max=0;
+////	//if(a>5)
+////		//b=3;
+////	//else
+////	//	b=-3;
+////	max= ((a>5) ? b=3 : b=-3);
+////	printf("%d\n",max);
+////	system("pause");
+////	return 0;
+////}
+
+
+
+
+////该段代码只能求出正整数的二进制中的1的个数，负数不行
+//int main()
+//{
+//	//求一个整数在内存中的二进制中1的个数 
+//	int num=0;
+//	int count=0;
+//	scanf("%d",&num);
+//	//统计num的补码中有几个1，因为整数是存放的补码中的
+//	while(num!=0)
+//	{
+//		if(num%2==1)
+//			count++;
+//		num=num/2;
+//	}
+//	printf("%d\n",count);
+//	system("pause");
+//	return 0;
+//}
+
+////负数也可以进行运算
+//int main()
+//{
+//	int num=0;
+//	int count=0;
+//	int i=0;
+//	scanf("%d",&num);
+//	//整数的补码为32bit位
+//	//num & 1 = 1
+//	//统计num中补码的个数有几个
+//	for(i=0;i<32;i++)
+//	{
+//		if((num >> i) & 1 == 1)
+//			count++;
+//	}
+//	printf("%d\n",count);
+//	system("pause");
+//	return 0;
+//}
