@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+//创建一个结构体类型为S
+struct S
+{
+	int a;
+	char c;
+	char arr[20];
+	double d;
+};//此处的分号必不可少
+//在创建一个结构体类型T
+struct T
+{
+	char ch[10];
+	struct S s;//把第一个创建的结构体类型S放入新建的结构体类型T中
+	char *pc;//创建一个指针
+};
+int main()
+{
+	char arr[]="hello bit";//把数组arr放入指针pc中
+	struct T t={"hehe",{100,'w',"hello world",3.14},arr};
+	printf("%s\n",t.ch);
+	printf("%s\n",t.s.arr);
+	printf("%lf\n",t.s.d);
+	printf("%s\n",t.pc);
+	system("pause");
+	return 0;
+}
